@@ -1,0 +1,82 @@
+<!--Es la voz de la api-->
+  <div class="voz">
+      <input type="text" id="texto">
+      <input type="button" id="hablar" value="Hablar">
+  </div>
+<!--Es la voz de la api-->
+
+
+<div class="container p-4">
+    <div class="row">
+        {{#each links}}
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <a href="{{url}}" target="_blank">
+                        <h3 class="card-title text-uppercase">
+                            {{title}}
+                        </h3>
+                    </a>
+                    <p class="m-2">{{description}}</p>
+                    <p>{{timeago created_at}}</p>
+                    <a href="/links/delete/{{id}}" class="btn btn-danger">Eliminar Artículo</a>
+                    <a href="/links/edit/{{id}}" class="btn btn-secondary">Editar</a>
+                </div>
+            </div>
+        </div>
+        {{else}}
+            <div class="col-md-4 mx-auto">
+                <div class="card card-body text-center">
+                    <p> Aun no ha agregado ningún artículo.</p>
+                    <a href="/links/add">Subir Artículo</a>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>
+
+
+
+<!--Es la voz de la api-->
+<style type="text/css">
+  *{
+    padding: 0px;
+    margin: 0px;
+    font-family: Century Georgia, 'Times New Roman', Times, serif;
+  }
+
+  body{
+    background-color: #ededed;
+  }
+/*Esto se cambio*/
+  .voz{
+    padding: 10px;
+    /*background-color: #fff;*/
+    margin: 10px;
+  }
+/*Esto se cambio*/
+
+input{
+    padding: 9px;
+    font-size: 18px;
+    border: solid 1px #aaa;
+    width: 80%;
+}
+
+input[type='button']{
+  width: 15%;
+}
+</style>
+
+<script type="text/javascript">
+
+    document.getElementById('hablar').addEventListener("click",()=>{
+        decir(document.getElementById("texto").value);
+    });
+
+    function decir(texto){
+      speechSynthesis.speak(new SpeechSynthesisUtterance(texto));
+    }
+
+</script>
+<!--Es la voz de la api-->
